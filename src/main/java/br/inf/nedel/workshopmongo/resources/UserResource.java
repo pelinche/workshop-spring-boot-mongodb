@@ -1,6 +1,7 @@
 package br.inf.nedel.workshopmongo.resources;
 
 
+import br.inf.nedel.workshopmongo.domain.Post;
 import br.inf.nedel.workshopmongo.domain.User;
 import br.inf.nedel.workshopmongo.dto.UserDTO;
 import br.inf.nedel.workshopmongo.services.UserService;
@@ -26,9 +27,6 @@ public class UserResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> findAll(){
-        //User luis = new User("1","Luis Carlos","pelinche@gmail.com");
-        //User alex = new User("2","Alex","alex@gmail.com");
-
         List<User> list = service.findAll();
         List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
@@ -63,6 +61,13 @@ public class UserResource {
         obj = service.update(obj);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts",method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = service.findById(id);
+
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
