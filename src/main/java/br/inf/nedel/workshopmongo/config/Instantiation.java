@@ -2,6 +2,7 @@ package br.inf.nedel.workshopmongo.config;
 
 import br.inf.nedel.workshopmongo.domain.Post;
 import br.inf.nedel.workshopmongo.domain.User;
+import br.inf.nedel.workshopmongo.dto.AuthorDTO;
 import br.inf.nedel.workshopmongo.repository.PostRepository;
 import br.inf.nedel.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,12 @@ public class Instantiation implements CommandLineRunner {
         User alex= new User(null, "Alex Green", "alex@gmail.com");
         User bob= new User(null, "BobGrey", "bob@gmail.com");
 
-
-        Post post1 = new Post(null,sdf.parse("21/03/2018"),"Partiu Viagem","Vou viajar para São Paulo. Abraços", maria);
-        Post post2 = new Post(null,sdf.parse("23/03/2018"),"Bom dia", "Acordei feliz hoje",maria);
-
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null,sdf.parse("21/03/2018"),"Partiu Viagem","Vou viajar para São Paulo. Abraços", new AuthorDTO(maria));
+        Post post2 = new Post(null,sdf.parse("23/03/2018"),"Bom dia", "Acordei feliz hoje",new AuthorDTO(maria));
+
+
         postRepository.saveAll(Arrays.asList(post1, post2));
 
 
