@@ -1,6 +1,6 @@
 package br.inf.nedel.workshopmongo.resources.exception;
 
-import br.inf.nedel.workshopmongo.services.ObjectNotFoundException;
+import br.inf.nedel.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
